@@ -8,5 +8,5 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 
 class Player extends FlxSprite 
 {
-	
+	//just for the github thing i guess
 }

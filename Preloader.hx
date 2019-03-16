@@ -12,12 +12,9 @@ import flash.text.Font;
 import flash.text.TextField;
 import flash.text.TextFormat;
 
-/**
- * ...
- * @brandybuizel 
- */
 @:font() class CustomFont extends Font {}
 @:bitmap("assets/images/preloaderArt.png") class LogoImage extends BitmapData { }
+
 class Preloader extends FlxBasePreloader 
 {
 	override public function new(MinDisplayTime:Float=4, ?AllowedURLs:Array<String>)
@@ -38,7 +35,7 @@ class Preloader extends FlxBasePreloader
 		var ratio:Float = this._width / 800; //This allows us to scale assets depending on the size of the screen.
 		
 		logo = new Sprite();
-		logo.scaleY = 0;
+		logo.scaleY = 1;
 		logo.addChild(new Bitmap(new LogoImage(0, 0))); //Sets the graphic of the sprite to a bitmap object, which uses our embedded bitmapData class
 		addChild(logo);
 		

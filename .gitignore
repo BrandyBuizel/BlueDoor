@@ -1,2 +1,4 @@
+export/debug
+export/release
 
-source/APIStuff.hx
+export/.build

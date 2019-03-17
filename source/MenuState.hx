@@ -22,10 +22,10 @@ class MenuState extends FlxState
 	private var _grpMenu:FlxTypedGroup<FlxText>;
 	private var _grpMenuBar:FlxTypedGroup<FlxSprite>;
 
-	private var menuItems:Array<String> = ["Play", "Credits"];
-	private var leadItems:Array<String>;
+	private var menuItems:Array<String> = ["Play", "Select Character", "Credits"];
 
 	private var selected:Int = 0;
+	private var charSelect:Int = 0;
 
 	private var curMenu:Int = 0;
 	private var selector:FlxSprite;
@@ -33,13 +33,12 @@ class MenuState extends FlxState
 
 	private function initText():Void
 	{
+		/*
 		_grpMenuBar = new FlxTypedGroup<FlxSprite>();
 		add(_grpMenuBar);
 
 		selector = new FlxSprite(0, 315);
 		selector.makeGraphic(FlxG.width, 36, FlxColor.MAGENTA);
-		//add(selector);
-		//resetBarFill();
 
 		_grpMenu = new FlxTypedGroup<FlxText>();
 		add(_grpMenu);
@@ -48,62 +47,41 @@ class MenuState extends FlxState
 
 		for (i in 0...menuItems.length)
 		{
-			/*
-			var whiteBar:FlxSprite = new FlxSprite(0, (i * 54) + 315);
-			whiteBar.makeGraphic(FlxG.width, 36);
-			_grpMenuBar.add(whiteBar);
-			*/
-
-			var text:FlxText = new FlxText(0, (i * 54) + 320, 0, menuItems[i], 32);
-			var text:FlxText = new FlxText(0, (i * 54) + 320, 0, menuItems[i], 32);
-			text.color = FlxColor.BLACK;
+			var text:FlxText = new FlxText(0, 0, 0, menuItems[i], 32);
+			text.color = FlxColor.WHITE;
 			text.screenCenter(X);
 			_grpMenu.add(text);
 		}
+		*/
+		
+		var text:FlxText = new FlxText(480, 120, 0, menuItems[0], 32);
+		text.color = FlxColor.WHITE;
+		text.screenCenter(X);
+		add(text);
 	}
 
 	private function menuHandling():Void
 	{
+		/*
 		for (i in 0..._grpMenu.members.length)
 		{
 			_grpMenu.members[i].color = FlxColor.WHITE;
 		}
 
 		_grpMenu.members[selected].color = FlxColor.MAGENTA;
+		*/
 
-		#if !mobile
-		if (FlxG.keys.anyJustPressed(["W", "UP", "I"]))
+		if (FlxG.keys.anyJustPressed(["W", "UP"]))
 		{
 			selected -= 1;
 
 			FlxG.sound.play("assets/sounds/menuUp.");
 		}
-		if (FlxG.keys.anyJustPressed(["S", "DOWN", "K"]))
+		
+		if (FlxG.keys.anyJustPressed(["S", "DOWN"]))
 		{
 			selected += 1;
 			FlxG.sound.play("assets/sounds/menuDown.");
-		}
-		#end
-
-		var gamepad = FlxG.gamepads.lastActive;
-		if (gamepad != null)
-		{
-			if (gamepad.anyJustPressed(["DPAD_UP", "DPAD_LEFT", "LEFT_STICK_DIGITAL_UP", "LEFT_STICK_DIGITAL_LEFT"]))
-			{
-				selected -= 1;
-				FlxG.sound.play("assets/sounds/menuUp.");
-			}
-
-			if (gamepad.anyJustPressed(["DPAD_DOWN", "DPAD_RIGHT", "LEFT_STICK_DIGITAL_DOWN", "LEFT_STICK_DIGITAL_RIGHT"]))
-			{
-				selected += 1;
-				FlxG.sound.play("assets/sounds/menuDown.");
-			}
-
-			if (gamepad.anyJustPressed(["A", "START"]))
-			{
-				menuOpen(menuItems[selected]);
-			}
 		}
 
 		FlxG.watch.addQuick("selected 1: ", selected);

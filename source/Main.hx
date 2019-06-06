@@ -26,7 +26,7 @@ class Main extends Sprite
 	public function new() 
 	{
 		super();
-		
+	
 		if (stage != null) 
 		{
 			init();

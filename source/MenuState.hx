@@ -33,6 +33,12 @@ class MenuState extends FlxState
 
 	private function initText():Void
 	{
+		// sprite's graphic will be made into a 128px by 64px solid red rectangle
+		var sprite = new FlxSprite();
+		sprite.makeGraphic(128, 64, FlxColor.RED);
+		sprite.screenCenter();
+		add(sprite);
+		
 		/*
 		_grpMenuBar = new FlxTypedGroup<FlxSprite>();
 		add(_grpMenuBar);

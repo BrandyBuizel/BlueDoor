@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxSprite;
 import flixel.system.FlxBasePreloader;
 import flixel.FlxG;
 import flash.display.*;
@@ -38,6 +39,23 @@ class Preloader extends FlxBasePreloader
 		logo.scaleY = 1;
 		logo.addChild(new Bitmap(new LogoImage(0, 0))); //Sets the graphic of the sprite to a bitmap object, which uses our embedded bitmapData class
 		addChild(logo);
+		
+		//UMM COFFEE
+		
+		//loadGraphic(AssetPaths.milk_00000__png, true, 180, 480);
+		
+		// sprite's graphic will be loaded from 'path/to/image.png' and is set to allow animations.
+		var milk = new FlxSprite();
+		milk.loadGraphic('assets/images/milk', true);
+		//add(milk);
+
+		// add an animation named 'run' to sprite, using the specified frames
+		milk.animation.add('play', [0-58]);
+
+		// play the 'run' animation
+		milk.animation.play('run');
+		
+		
 		
 		_buffer = new Sprite();
 		//_buffer.scaleX = _buffer.scaleY = 2;

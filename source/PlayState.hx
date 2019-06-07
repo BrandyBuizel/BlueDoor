@@ -20,6 +20,13 @@ class PlayState extends FlxState
 {
 	private var playerLane:Int = 1;
 	
+	override public function create():Void 
+	{
+		playerMovement();
+		
+		super.create();
+	}
+	
 	private function playerMovement():Void
 	{
 		switch (playerLane)

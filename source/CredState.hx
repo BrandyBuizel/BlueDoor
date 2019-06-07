@@ -33,7 +33,13 @@ class CredState extends FlxState
 		boxFade.fadeOff();
 		add(boxFade);
 		
-		FlxG.sound.playMusic("assets/music/randy.mp3");
+		#if html5
+			FlxG.sound.playMusic("assets/music/randy.mp3");
+		#end
+			
+		#if desktop
+			FlxG.sound.playMusic("assets/music/randy.ogg");
+		#end
 		
 		super.create();
 	}
@@ -89,12 +95,14 @@ class CredState extends FlxState
 			"Made with HaxeFlixel"
 		],
 		[
-			"Inspired by 'Tapper' and 'Spongebob: Lights, Camera, Pants'",
+			"Inspired by 'Tapper' and",
+			"'SpongeBob SquarePants: Lights, Camera, Pants!'",
 			"",
 			"Github Sourcecode: https://github.com/BrandyBuizel/BlueDoor"
 		],
 		[
 			"FEATURING",
+			"",
 			"Ken",
 			"Dylan",
 			"Dustin"

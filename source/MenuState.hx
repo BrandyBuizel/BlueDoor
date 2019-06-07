@@ -17,6 +17,10 @@ import flixel.ui.FlxSpriteButton;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 
+#if arcade
+	//arcace specific code goes here
+#end
+
 class MenuState extends FlxState
 {
 	private var _grpMenu:FlxTypedGroup<FlxText>;
@@ -60,7 +64,7 @@ class MenuState extends FlxState
 		}
 		
 		//Character Select Arrow
-		var selArrowR = new FlxSprite(_grpMenu.members[1].x - 45, _grpMenu.members[1].y + 7);
+		var selArrowR = new FlxSprite(_grpMenu.members[1].x - 42, _grpMenu.members[1].y + 6);
 		selArrowR.loadGraphic(AssetPaths.selectArrow__png);
 		selArrowR.setGraphicSize(15);
 		selArrowR.updateHitbox();
@@ -68,7 +72,7 @@ class MenuState extends FlxState
 		add(selArrowR);
 		
 		//Character Select Arrow
-		var selArrowL = new FlxSprite(_grpMenu.members[1].x + 340, _grpMenu.members[1].y + 7);
+		var selArrowL = new FlxSprite(_grpMenu.members[1].x + 340, _grpMenu.members[1].y + 8);
 		selArrowL.loadGraphic(AssetPaths.selectArrow__png);
 		selArrowL.setGraphicSize(15);
 		selArrowL.flipX = true;
@@ -94,19 +98,43 @@ class MenuState extends FlxState
 
 		_grpMenu.members[selected].color = FlxColor.YELLOW;
 		
+		#if !arcade //Normal Controller Mapping
+			if (FlxG.keys.anyJustPressed(["W", "UP"]))
+			{
+				selected -= 1;
 
-		if (FlxG.keys.anyJustPressed(["W", "UP"]))
-		{
-			selected -= 1;
-
-			FlxG.sound.play("assets/sounds/menuUp.mp3");
-		}
+				FlxG.sound.play("assets/sounds/menuUp.mp3");
+				FlxG.sound.play("assets/sounds/menuUp.ogg");
+			}
+			
+			if (FlxG.keys.anyJustPressed(["S", "DOWN"]))
+			{
+				selected += 1;
+				FlxG.sound.play("assets/sounds/menuDown.mp3");
+				FlxG.sound.play("assets/sounds/menuDown.ogg");
+			}
 		
-		if (FlxG.keys.anyJustPressed(["S", "DOWN"]))
-		{
-			selected += 1;
-			FlxG.sound.play("assets/sounds/menuDown.mp3");
-		}
+			if (selected == 1){
+				if (FlxG.keys.anyJustPressed(["A", "LEFT"]))
+				{
+					//selArrowL.color = FlxColor.YELLOW;
+					FlxG.sound.play("assets/sounds/menuConfirm.mp3");
+					FlxG.sound.play("assets/sounds/menuConfirm.ogg");
+				}
+				
+				if (FlxG.keys.anyJustPressed(["D", "RIGHT"]))
+				{
+					//selArrowR.color = FlxColor.YELLOW;
+					FlxG.sound.play("assets/sounds/menuConfirm.mp3");
+					FlxG.sound.play("assets/sounds/menuConfirm.ogg");
+				}
+			}
+			
+			if (FlxG.keys.anyJustPressed(["ENTER", "Z", "SPACE"]) && (selected == 0 || selected == 2))
+			{
+				menuOpen(menuItems[selected]);
+			}
+		#end
 
 		FlxG.watch.addQuick("selected 1: ", selected);
 
@@ -117,24 +145,7 @@ class MenuState extends FlxState
 
 		FlxG.watch.addQuick("selected 2: ", selected);
 
-		if (FlxG.keys.anyJustPressed(["ENTER", "Z", "SPACE"]) && (selected == 0 || selected == 2))
-		{
-			menuOpen(menuItems[selected]);
-		}
 		
-		if (selected == 1){
-			if (FlxG.keys.anyJustPressed(["A", "LEFT"]))
-			{
-				//selArrowL.color = FlxColor.YELLOW;
-				FlxG.sound.play("assets/sounds/menuConfirm.mp3");
-			}
-			
-			if (FlxG.keys.anyJustPressed(["D", "RIGHT"]))
-			{
-				//selArrowR.color = FlxColor.YELLOW;
-				FlxG.sound.play("assets/sounds/menuConfirm.mp3");
-			}
-		}
 	}
 
 	private function menuOpen(menuSelected:String):Void
@@ -142,6 +153,7 @@ class MenuState extends FlxState
 		var sound:FlxSound = new FlxSound();
 		sound.persist = true;
 		sound.loadEmbedded("assets/sounds/menuConfirm.mp3", false, true);
+		sound.loadEmbedded("assets/sounds/menuConfirm.ogg", false, true);
 		sound.group = FlxG.sound.defaultSoundGroup;
 		sound.play();
 

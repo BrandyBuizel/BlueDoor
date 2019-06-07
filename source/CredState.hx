@@ -78,11 +78,13 @@ class CredState extends FlxState
 	private var credsArray:Array<Dynamic> = 
 	[
 		[
-			"Blue Door the Game",
+			"BLUE DOOR THE GAME",
+			"",
 			"",
 			"Created and Designed by:",
 			"Brandon Driesse (@BrandyBuizel)",
 			"Joe Varca",
+			"",
 			"",
 			"Made with HaxeFlixel"
 		],
@@ -92,7 +94,7 @@ class CredState extends FlxState
 			"Github Sourcecode: https://github.com/BrandyBuizel/BlueDoor"
 		],
 		[
-			"Starring Your Coffee & Waffle connaisseurs",
+			"FEATURING",
 			"Ken",
 			"Dylan",
 			"Dustin"
@@ -101,10 +103,19 @@ class CredState extends FlxState
 			"SPECIAL THANKS",
 			"Isaac & Logan",
 			"",
-			"For helping us sneak this game on their custom cabinent"
+			"For helping us sneak this game onto their custom cabinet"
+		],
+		[
+			"SPECIAL THANKS",
+			"Cameron Taylor (@ninja_muffin99)",
+			"",
+			"For additional coding assitance"
 		],
 		[
 			"Press Z to go back"
+		],
+		[
+			"Or listen to the Macho Man Rap on loop..."
 		]
 	];
 	

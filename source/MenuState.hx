@@ -73,13 +73,13 @@ class MenuState extends FlxState
 		selArrowL.setGraphicSize(15);
 		selArrowL.flipX = true;
 		selArrowL.updateHitbox();
-		FlxTween.tween(selArrowL, {x: selArrowL.x + 10}, 0.2, {type:FlxTweenType.PINGPONG, ease:FlxEase.quadInOut});
+		FlxTween.tween(selArrowL, {x: selArrowL.x + 10}, 0.2, {type:FlxTweenType.PINGPONG, ease:FlxEase.quadInOut, startDelay:0.225});
 		add(selArrowL);
 	}
 	
 	override public function update(elapsed:Float):Void 
 	{
-		menuHandling();		
+		menuHandling();
 		
 		super.update(elapsed);
 	}
@@ -117,7 +117,7 @@ class MenuState extends FlxState
 
 		FlxG.watch.addQuick("selected 2: ", selected);
 
-		if (FlxG.keys.anyJustPressed(["ENTER", "Z", "SPACE"]))
+		if (FlxG.keys.anyJustPressed(["ENTER", "Z", "SPACE"]) && (selected == 0 || selected == 2))
 		{
 			menuOpen(menuItems[selected]);
 		}
@@ -125,12 +125,14 @@ class MenuState extends FlxState
 		if (selected == 1){
 			if (FlxG.keys.anyJustPressed(["A", "LEFT"]))
 			{
-				FlxG.sound.play("assets/sounds/menuUp.mp3");
+				//selArrowL.color = FlxColor.YELLOW;
+				FlxG.sound.play("assets/sounds/menuConfirm.mp3");
 			}
 			
 			if (FlxG.keys.anyJustPressed(["D", "RIGHT"]))
 			{
-				FlxG.sound.play("assets/sounds/menuUp.mp3");
+				//selArrowR.color = FlxColor.YELLOW;
+				FlxG.sound.play("assets/sounds/menuConfirm.mp3");
 			}
 		}
 	}

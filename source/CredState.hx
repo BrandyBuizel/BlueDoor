@@ -33,6 +33,8 @@ class CredState extends FlxState
 		boxFade.fadeOff();
 		add(boxFade);
 		
+		FlxG.sound.playMusic("assets/music/randy.mp3");
+		
 		super.create();
 	}
 	
@@ -63,38 +65,14 @@ class CredState extends FlxState
 		
 		if (FlxG.keys.anyJustPressed(["Z", "ENTER", "SPACE"]))
 		{
+			FlxG.sound.music.stop();
+			
 			FlxG.switchState(new MenuState());
 		}
 			
 		var gamepad = FlxG.gamepads.lastActive;
 			
 		super.update(elapsed);
-	}
-	
-	private function mobileShit():Void
-	{
-		for (touch in FlxG.touches.list)
-		{
-			if (touch.justPressed) 
-			{
-				FlxG.switchState(new MenuState());
-			}
-		}
-		
-		#if android
-			if (FlxG.android.justPressed.BACK)
-			{
-				FlxG.switchState(new MenuState());
-			}
-		#end
-		
-		#if switch
-			if (touch.justPressed) 
-			{
-				FlxG.switchState(new MenuState());
-			}
-		#end
-		
 	}
 	
 	private var credsArray:Array<Dynamic> = 
@@ -109,7 +87,7 @@ class CredState extends FlxState
 			"Made with HaxeFlixel"
 		],
 		[
-			"Inspired by 'Tapper' and 'Lights, Camera, Pants'",
+			"Inspired by 'Tapper' and 'Spongebob: Lights, Camera, Pants'",
 			"",
 			"Github Sourcecode: https://github.com/BrandyBuizel/BlueDoor"
 		],

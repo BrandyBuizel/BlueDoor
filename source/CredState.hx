@@ -21,8 +21,7 @@ class CredState extends FlxState
 		creds.alignment = FlxTextAlign.CENTER;
 		add(creds);
 		
-		for (i in 0...credsArray[curCredPlacement].length)
-		{
+		for (i in 0...credsArray[curCredPlacement].length){
 			creds.text += credsArray[curCredPlacement][i] + "\n";
 		}
 		
@@ -48,8 +47,7 @@ class CredState extends FlxState
 	{
 		credTimer -= FlxG.elapsed;
 		
-		if (credTimer < 0)
-		{
+		if (credTimer < 0){
 			credTimer = 6;
 			
 			boxFade.fadeColor(0xFF000000, null, function(){
@@ -59,8 +57,7 @@ class CredState extends FlxState
 				if (curCredPlacement >= credsArray.length)
 					curCredPlacement = 0;
 				
-				for (i in 0...credsArray[curCredPlacement].length)
-				{
+				for (i in 0...credsArray[curCredPlacement].length){
 					creds.text += credsArray[curCredPlacement][i] + "\n";
 				}
 				
@@ -69,8 +66,7 @@ class CredState extends FlxState
 			});	
 		}
 		
-		if (FlxG.keys.anyJustPressed(["Z", "ENTER", "SPACE"]))
-		{
+		if (FlxG.keys.anyJustPressed(["Z", "ENTER", "SPACE"])){
 			FlxG.sound.music.stop();
 			
 			FlxG.switchState(new MenuState());

@@ -8,6 +8,8 @@ import flixel.system.FlxAssets.FlxGraphicAsset;
 
 class Player extends FlxSprite 
 {
+	private var playerLane:Int = 1;
+	
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset)
 	{
 		super(X, Y, SimpleGraphic);
@@ -21,7 +23,21 @@ class Player extends FlxSprite
 		offset.x = 4;
 		height = 8;
 		offset.y = 6;
-
+		
 		FlxG.log.add("added player");
+	}
+		
+	public function playerMovement():Void
+	{
+		switch (playerLane){
+			case 1:
+				//set player pos to lane 1
+			case 2:
+				//set player pos to lane 2
+			case 3:
+				//set player pos to lane 3
+			default:
+				//set player pos value to lane 1 value
+		}
 	}
 }

@@ -18,27 +18,26 @@ import openfl.utils.Object;
 
 class PlayState extends FlxState
 {
-	private var playerLane:Int = 1;
+	private var _player:Player;
 	
 	override public function create():Void 
-	{
-		playerMovement();
+	{	
+		var floor = new FlxSprite(0, 0);
+		floor.loadGraphic(AssetPaths.floor__png);
+		floor.setGraphicSize(960);
+		floor.updateHitbox();
+		add(floor);
 		
 		super.create();
 	}
 	
-	private function playerMovement():Void
+	override public function update(elapsed:Float):Void 
 	{
-		switch (playerLane)
-		{
-			case 1:
-				//set player pos to lane 1
-			case 2:
-				//set player pos to lane 2
-			case 3:
-				//set player pos to lane 3
-			default:
-				//set player pos value to lane 1 value
+		//DEBUG leave PlayState
+		if (FlxG.keys.anyJustPressed(["Q", "ESCAPE"])){
+			FlxG.switchState(new MenuState());
 		}
+		
+		super.update(elapsed);
 	}
 }

@@ -55,8 +55,7 @@ class MenuState extends FlxState
 
 		selMax = menuItems.length - 1;
 
-		for (i in 0...menuItems.length)
-		{
+		for (i in 0...menuItems.length){
 			var text:FlxText = new FlxText(0, 180 + (i * 60), 0, menuItems[i], 32);
 			text.color = FlxColor.WHITE;
 			text.screenCenter(X);
@@ -91,47 +90,41 @@ class MenuState extends FlxState
 	private function menuHandling():Void
 	{
 		
-		for (i in 0..._grpMenu.members.length)
-		{
+		for (i in 0..._grpMenu.members.length){
 			_grpMenu.members[i].color = FlxColor.WHITE;
 		}
 
 		_grpMenu.members[selected].color = FlxColor.YELLOW;
 		
 		#if !arcade //Normal Controller Mapping
-			if (FlxG.keys.anyJustPressed(["W", "UP"]))
-			{
+			if (FlxG.keys.anyJustPressed(["W", "UP"])){
 				selected -= 1;
 
 				FlxG.sound.play("assets/sounds/menuUp.mp3");
 				FlxG.sound.play("assets/sounds/menuUp.ogg");
 			}
 			
-			if (FlxG.keys.anyJustPressed(["S", "DOWN"]))
-			{
+			if (FlxG.keys.anyJustPressed(["S", "DOWN"])){
 				selected += 1;
 				FlxG.sound.play("assets/sounds/menuDown.mp3");
 				FlxG.sound.play("assets/sounds/menuDown.ogg");
 			}
 		
 			if (selected == 1){
-				if (FlxG.keys.anyJustPressed(["A", "LEFT"]))
-				{
+				if (FlxG.keys.anyJustPressed(["A", "LEFT"])){
 					//selArrowL.color = FlxColor.YELLOW;
 					FlxG.sound.play("assets/sounds/menuConfirm.mp3");
 					FlxG.sound.play("assets/sounds/menuConfirm.ogg");
 				}
 				
-				if (FlxG.keys.anyJustPressed(["D", "RIGHT"]))
-				{
+				if (FlxG.keys.anyJustPressed(["D", "RIGHT"])){
 					//selArrowR.color = FlxColor.YELLOW;
 					FlxG.sound.play("assets/sounds/menuConfirm.mp3");
 					FlxG.sound.play("assets/sounds/menuConfirm.ogg");
 				}
 			}
 			
-			if (FlxG.keys.anyJustPressed(["ENTER", "Z", "SPACE"]) && (selected == 0 || selected == 2))
-			{
+			if (FlxG.keys.anyJustPressed(["ENTER", "Z", "SPACE"]) && (selected == 0 || selected == 2)){
 				menuOpen(menuItems[selected]);
 			}
 		#end
@@ -157,8 +150,7 @@ class MenuState extends FlxState
 		sound.group = FlxG.sound.defaultSoundGroup;
 		sound.play();
 
-		switch (menuSelected)
-		{
+		switch (menuSelected){
 			case "Play":
 				FlxG.switchState(new PlayState());
 			case "Credits":

@@ -41,21 +41,8 @@ class Preloader extends FlxBasePreloader
 		addChild(logo);
 		
 		//UMM COFFEE
-		
-		//loadGraphic(AssetPaths.milk_00000__png, true, 180, 480);
-		
-		// sprite's graphic will be loaded from 'path/to/image.png' and is set to allow animations.
-		var milk = new FlxSprite();
-		milk.loadGraphic('assets/images/milk', true);
-		//add(milk);
-
-		// add an animation named 'run' to sprite, using the specified frames
-		milk.animation.add('play', [0-58]);
-
-		// play the 'run' animation
-		milk.animation.play('run');
-		
-		
+		//var milk = new FlxSprite();
+		var milkFrame:Int = 0;
 		
 		_buffer = new Sprite();
 		//_buffer.scaleX = _buffer.scaleY = 2;
@@ -84,6 +71,27 @@ class Preloader extends FlxBasePreloader
 	
 	override public function update(Percent:Float):Void 
 	{
+		// sprite's graphic will be loaded from 'path/to/image.png' and is set to allow animations.
+		/*
+		if (milkFrame > 0){
+			destroy(milk);
+		}
+		
+		if (milkFrame > 9){
+			@:milk("assets/images/milk/milk_" + milkFrame + ".png") { }
+			milk.addChild(new Bitmap(new LogoImage(0, 0)));
+			milkFrame += 1;
+			//milk.loadGraphic('AssetPaths.milk_' + milkFrame + '__png', true);
+		}else if (milkFrame == 32){
+			milkFrame = 0;
+		}else{
+			@:milk("assets/images/milk/milk_0" + milkFrame + ".png") { }
+			milk.addChild(new Bitmap(new LogoImage(0, 0)));
+			milkFrame += 1;
+			//milk.loadGraphic('AssetPaths.milk_0' + milkFrame + '__png', true);
+		}		
+		*/
+		
 		super.update(Percent);
 		
 		//logo.scaleY = Percent;

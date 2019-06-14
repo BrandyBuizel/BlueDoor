@@ -16,6 +16,10 @@ import flixel.math.FlxMath;
 import flixel.ui.FlxSpriteButton;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import flixel.util.FlxSpriteUtil;
+
+//import djFlixel.gui.FlxMenu;
+//import djFlixel.gui.FlxMenuPages;
 
 #if arcade
 	//arcace specific code goes here
@@ -25,8 +29,14 @@ class MenuState extends FlxState
 {
 	private var _grpMenu:FlxTypedGroup<FlxText>;
 	private var _grpMenuBar:FlxTypedGroup<FlxSprite>;
-
-	private var menuItems:Array<String> = ["Play", "Select Character", "Credits"];
+	
+	#if (arcade || web)
+		private var menuItems:Array<String> = ["Play", "Select Character", "Credits"];
+	#else
+		private var menuItems:Array<String> = ["Play", "Select Character", "Credits", "Exit"];
+	#end
+	
+	private var charItems:Array<String> = ["Ken", "Dylan", "Dustin"];
 
 	private var selected:Int = 0;
 	private var charSelect:Int = 0;
@@ -34,6 +44,9 @@ class MenuState extends FlxState
 	private var curMenu:Int = 0;
 	private var selector:FlxSprite;
 	private var selMax:Int = 0;//gets set later	
+	
+	private var _selArrowL:FlxSprite;
+	private var _selArrowR:FlxSprite;
 	
 	override public function create():Void 
 	{
@@ -62,22 +75,28 @@ class MenuState extends FlxState
 			_grpMenu.add(text);
 		}
 		
-		//Character Select Arrow
-		var selArrowR = new FlxSprite(_grpMenu.members[1].x - 42, _grpMenu.members[1].y + 6);
-		selArrowR.loadGraphic(AssetPaths.selectArrow__png);
-		selArrowR.setGraphicSize(15);
-		selArrowR.updateHitbox();
-		FlxTween.tween(selArrowR, {x: selArrowR.x + 10}, 0.2, {type:FlxTweenType.PINGPONG, ease:FlxEase.quadInOut});
-		add(selArrowR);
+		//Character Select Arrow Left
+		_selArrowL = new FlxSprite(_grpMenu.members[1].x - 42, _grpMenu.members[1].y + 6);
+		_selArrowL.loadGraphic(AssetPaths.spr_selectArrow__png, true, 6, 9);
+		_selArrowL.setGraphicSize(15);
+		_selArrowL.updateHitbox();
+		FlxTween.tween(_selArrowL, {x: _selArrowL.x + 10}, 0.2, {type:FlxTweenType.PINGPONG, ease:FlxEase.quadInOut, startDelay:0.225});
+		add(_selArrowL);
 		
-		//Character Select Arrow
-		var selArrowL = new FlxSprite(_grpMenu.members[1].x + 340, _grpMenu.members[1].y + 8);
-		selArrowL.loadGraphic(AssetPaths.selectArrow__png);
-		selArrowL.setGraphicSize(15);
-		selArrowL.flipX = true;
-		selArrowL.updateHitbox();
-		FlxTween.tween(selArrowL, {x: selArrowL.x + 10}, 0.2, {type:FlxTweenType.PINGPONG, ease:FlxEase.quadInOut, startDelay:0.225});
-		add(selArrowL);
+		_selArrowL.animation.add("normal", [0]);
+		_selArrowL.animation.add("yellow", [1, 1, 1, 0], 16, false);
+		
+		//Character Select Arrow Right
+		_selArrowR = new FlxSprite(_grpMenu.members[1].x + 340, _grpMenu.members[1].y + 8);
+		_selArrowR.loadGraphic(AssetPaths.spr_selectArrow__png, true, 6, 9);
+		_selArrowR.setGraphicSize(15);
+		_selArrowR.flipX = true;
+		_selArrowR.updateHitbox();
+		FlxTween.tween(_selArrowR, {x: _selArrowR.x + 10}, 0.2, {type:FlxTweenType.PINGPONG, ease:FlxEase.quadInOut});
+		add(_selArrowR);
+		
+		_selArrowR.animation.add("normal", [0]);
+		_selArrowR.animation.add("yellow", [1, 1, 1, 0], 16, false);	
 	}
 	
 	override public function update(elapsed:Float):Void 
@@ -93,7 +112,7 @@ class MenuState extends FlxState
 		for (i in 0..._grpMenu.members.length){
 			_grpMenu.members[i].color = FlxColor.WHITE;
 		}
-
+		
 		_grpMenu.members[selected].color = FlxColor.YELLOW;
 		
 		#if !arcade //Normal Controller Mapping
@@ -112,13 +131,15 @@ class MenuState extends FlxState
 		
 			if (selected == 1){
 				if (FlxG.keys.anyJustPressed(["A", "LEFT"])){
-					//selArrowL.color = FlxColor.YELLOW;
+					charSelect -= 1;
+					_selArrowL.animation.play("yellow");
 					FlxG.sound.play("assets/sounds/menuConfirm.mp3");
 					FlxG.sound.play("assets/sounds/menuConfirm.ogg");
 				}
 				
 				if (FlxG.keys.anyJustPressed(["D", "RIGHT"])){
-					//selArrowR.color = FlxColor.YELLOW;
+					charSelect += 1;
+					_selArrowR.animation.play("yellow");
 					FlxG.sound.play("assets/sounds/menuConfirm.mp3");
 					FlxG.sound.play("assets/sounds/menuConfirm.ogg");
 				}
@@ -137,8 +158,6 @@ class MenuState extends FlxState
 			selected = _grpMenu.members.length - 1;
 
 		FlxG.watch.addQuick("selected 2: ", selected);
-
-		
 	}
 
 	private function menuOpen(menuSelected:String):Void

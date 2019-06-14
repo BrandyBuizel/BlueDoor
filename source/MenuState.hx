@@ -17,9 +17,20 @@ import flixel.ui.FlxSpriteButton;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.util.FlxSpriteUtil;
-
-//import djFlixel.gui.FlxMenu;
-//import djFlixel.gui.FlxMenuPages;
+/*
+import djFlixel.FLS;
+import djFlixel.fx.BoxScroller;
+import djFlixel.gfx.GfxTool;
+import djFlixel.gui.Align;
+import djFlixel.gui.FlxMenu;
+import djFlixel.gui.FlxMenuPages;
+import djFlixel.gui.Gui;
+import djFlixel.gui.Styles;
+import djFlixel.gui.menu.MItemData;
+import djFlixel.tool.DataTool;
+import djFlixel.gui.UIButton;
+import djFlixel.gfx.Palette_DB32 as DB32;
+*/
 
 #if arcade
 	//arcace specific code goes here

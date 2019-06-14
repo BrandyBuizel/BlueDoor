@@ -15,5 +15,5 @@ Brandon Driesse ([@BrandyBuizel](https://twitter.com/BrandyBuizel))
 
 Joe Varca
 
-	
+
 Made with [HaxeFlixel](https://haxeflixel.com/)

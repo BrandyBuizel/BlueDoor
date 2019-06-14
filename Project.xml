@@ -17,7 +17,7 @@
 	<window width="960" height="540" fps="60" background="#121211" hardware="true" vsync="false" />
 
 	<!--HTML5-specific-->
-	<window if="html5" resizable="false" />
+	<window if="html5" resizable="true" />
 
 	<!--Desktop-specific-->
 	<window if="desktop" orientation="landscape" fullscreen="true" width="1920" height="1080" resizable="true" />
@@ -50,6 +50,9 @@
 
 	<!--In case you want to use nape with flixel-->
 	<!--<haxelib name="nape" />-->
+	
+	<!--for vibration!!-->
+	<haxelib name="haxe-hardware" if="android" />
 
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
@@ -63,8 +66,9 @@
 	<!--<haxedef name="FLX_NO_NATIVE_CURSOR" />-->
 
 	<!--Optimise inputs, be careful you will get null errors if you don't use conditionals in your game-->
-	<haxedef name="FLX_NO_MOUSE" if="mobile" />
-	<haxedef name="FLX_NO_MOUSE" if="html5" />
+	<haxedef name="FLX_NO_MOUSE" />
+	<!--<haxedef name="FLX_NO_MOUSE" if="mobile" />-->
+	<!--<haxedef name="FLX_NO_MOUSE" if="html5" />-->
 	<haxedef name="FLX_NO_KEYBOARD" if="mobile" />
 	<haxedef name="FLX_NO_TOUCH" if="desktop" />
 	<!--<haxedef name="FLX_NO_GAMEPAD" />-->

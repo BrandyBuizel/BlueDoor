@@ -12,18 +12,9 @@ class Player extends FlxSprite
 	
 	public function new(?X:Float=0, ?Y:Float=0, ?SimpleGraphic:FlxGraphicAsset)
 	{
-		super(X, Y, SimpleGraphic);
+		super(X, Y);
 		loadGraphic(AssetPaths.spr_player__png, true, 16, 16);
-
-		var frameRate:Int = 6;
-		animation.add("u", [0, 1, 2], frameRate);
-		drag.x = drag.y = 200;
-		
-		width = 8;
-		offset.x = 4;
-		height = 8;
-		offset.y = 6;
-		
+		updateHitbox();
 		FlxG.log.add("added player");
 	}
 		
@@ -38,6 +29,18 @@ class Player extends FlxSprite
 				//set player pos to lane 3
 			default:
 				//set player pos value to lane 1 value
+		}
+		
+		if (FlxG.keys.anyPressed([W, A, S, D, "UP", "DOWN", "LEFT", "RIGHT"]))
+		{
+			if (FlxG.keys.anyPressed(["S", "DOWN"]))
+			{
+				
+			}
+			if (FlxG.keys.anyPressed(["W", "UP"]))
+			{
+				
+			}
 		}
 	}
 }

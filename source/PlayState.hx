@@ -28,6 +28,8 @@ class PlayState extends FlxState
 		floor.updateHitbox();
 		add(floor);
 		
+		_player = new Player(200, 200);
+		
 		super.create();
 	}
 	

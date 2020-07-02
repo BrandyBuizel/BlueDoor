@@ -1,6 +1,6 @@
-export/debug
-export/release
-export
+HaxeFlixel\export
+HaxeFlixel\export\debug
+HaxeFlixel\export\release
+HaxeFlixel\export\.build
 
-export/.build
-export\.build
+Unity\Library

@@ -37,7 +37,7 @@ class PlayState extends FlxState
 	{
 		//DEBUG leave PlayState
 		if (FlxG.keys.anyJustPressed(["Q", "ESCAPE"])){
-			FlxG.switchState(new MenuState());
+			FlxG.switchState(new TitleState());
 		}
 		
 		super.update(elapsed);

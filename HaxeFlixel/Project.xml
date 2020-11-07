@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Blue Door the Game" file="BlueDoor" packageName="com.milktoastgames.bluedoor" main="Main" version="0.0.1" company="Milktoast Games" id="0x0100ca400e116000" />
+	<app title="Blue Door the Game" file="BlueDoor" packageName="com.milktoastgames.bluedoor" main="Main" version="0.0.1" company="Milktoast Games" />
 
 	<!--Switch Export with Unique ApplicationID-->
 	<set name="APP_ID" value="0x0100ca400e116000" />
@@ -49,6 +49,7 @@
 	<assets path="CHANGELOG.md"/>
 
 	<assets path="assets/fonts/vcr.ttf" embed="true" />
+	<assets path="assets/fonts/sing_14l.ttf" embed="true" />
 
 	<!-- _______________________________ Libraries ______________________________ -->
 
@@ -60,6 +61,7 @@
 
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
+	<haxelib name="djFlixel" />
 	<!-- <haxelib name="newgrounds" /> -->
 	<!-- <haxelib name="faxe" /> -->
 	<!-- <haxelib name="markdown" /> -->

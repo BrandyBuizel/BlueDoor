@@ -1,6 +1,6 @@
 package;
 
-import djFlixel.fx.BoxFader;
+//import djFlixel.gfx.BoxFader;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.addons.text.FlxTextField;
@@ -10,7 +10,7 @@ import flixel.util.FlxColor;
 class CredState extends FlxState 
 {
 	private var creds:FlxText;
-	private var boxFade:BoxFader;
+	//private var boxFade:BoxFader;
 	
 	private var credTimer:Float = 5;
 	private var curCredPlacement:Int = 0;
@@ -27,18 +27,14 @@ class CredState extends FlxState
 		
 		creds.screenCenter();		
 		
+		/*
 		boxFade = new BoxFader();
 		boxFade.setColor(FlxColor.BLACK);
 		boxFade.fadeOff();
 		add(boxFade);
+		*/
 		
-		#if html5
-			FlxG.sound.playMusic("assets/music/randy.mp3");
-		#end
-			
-		#if desktop
-			FlxG.sound.playMusic("assets/music/randy.ogg");
-		#end
+		FlxG.sound.playMusic('assets/music/randy' + TitleState.soundExt);
 		
 		super.create();
 	}
@@ -50,7 +46,7 @@ class CredState extends FlxState
 		if (credTimer < 0){
 			credTimer = 6;
 			
-			boxFade.fadeColor(0xFF000000, null, function(){
+			//boxFade.fadeColor(0xFF000000, null, function(){
 				creds.text = "";
 				curCredPlacement += 1;
 				
@@ -62,14 +58,14 @@ class CredState extends FlxState
 				}
 				
 				creds.screenCenter();
-				boxFade.fadeOff();
-			});	
+				//boxFade.fadeOff();
+			//});
 		}
 		
 		if (FlxG.keys.anyJustPressed(["Z", "ENTER", "SPACE"])){
 			FlxG.sound.music.stop();
 			
-			FlxG.switchState(new MenuState());
+			FlxG.switchState(new TitleState());
 		}
 			
 		var gamepad = FlxG.gamepads.lastActive;

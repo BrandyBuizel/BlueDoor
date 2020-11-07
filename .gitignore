@@ -1,11 +1,3 @@
-HaxeFlixel\export
-HaxeFlixel/export
-HaxeFlixel\export\debug
-HaxeFlixel/export/debug
-HaxeFlixel\export\release
-HaxeFlixel/export/release
-HaxeFlixel\export\.build
-HaxeFlixel/export/.build
-
-Unity\Library
-Unity/Library
+export/
+.vscode/
+APIStuff.hx

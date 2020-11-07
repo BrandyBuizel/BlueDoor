@@ -11,7 +11,7 @@ import flixel.tile.FlxTilemap;
 import flixel.util.FlxColor;
 import openfl.Assets;
 
-class PlayState extends FlxState
+class Splitscreen extends FlxState
 {
 	var _level:FlxTilemap;
 	var _player1:FlxSprite;
@@ -21,9 +21,7 @@ class PlayState extends FlxState
 	var _textY:Int;
 	
 	override public function create():Void
-	{
-		FlxG.mouse.visible = false;
-		
+	{	
 		// Set the background color to white
 		FlxG.cameras.bgColor = FlxColor.WHITE;
 		

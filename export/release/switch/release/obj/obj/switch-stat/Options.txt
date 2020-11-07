@@ -1,0 +1,2 @@
+hxcpp_api_level=331
+hxcpp=C:\HaxeToolkit\haxe\lib\hxcpp/4,0,8,switch/

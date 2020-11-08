@@ -111,28 +111,28 @@ class TitleState extends FlxState
 		_grpMenu.members[selected].color = FlxColor.YELLOW;
 		
 		#if !arcade //Normal Controller Mapping
-			if (FlxG.keys.anyJustPressed(["W", "UP"])){
+			if (FlxG.keys.anyJustPressed(["W", "UP", "DPAD_UP", "LEFT_STICK_DIGITAL_UP", "RIGHT_STICK_DIGITAL_UP"])){
 				selected -= 1;
 
 				FlxG.sound.play("assets/sounds/menuUp.mp3");
 				FlxG.sound.play("assets/sounds/menuUp.ogg");
 			}
 			
-			if (FlxG.keys.anyJustPressed(["S", "DOWN"])){
+			if (FlxG.keys.anyJustPressed(["S", "DOWN", "DPAD_DOWN", "LEFT_STICK_DIGITAL_DOWN", "RIGHT_STICK_DIGITAL_DOWN"])){
 				selected += 1;
 				FlxG.sound.play("assets/sounds/menuDown.mp3");
 				FlxG.sound.play("assets/sounds/menuDown.ogg");
 			}
 		
 			if (selected == 1){
-				if (FlxG.keys.anyJustPressed(["A", "LEFT"])){
+				if (FlxG.keys.anyJustPressed(["A", "LEFT", "DPAD_LEFT", "LEFT_STICK_DIGITAL_LEFT", "RIGHT_STICK_DIGITAL_LEFT"])){
 					charSelect -= 1;
 					_selArrowL.animation.play("yellow");
 					FlxG.sound.play("assets/sounds/menuConfirm.mp3");
 					FlxG.sound.play("assets/sounds/menuConfirm.ogg");
 				}
 				
-				if (FlxG.keys.anyJustPressed(["D", "RIGHT"])){
+				if (FlxG.keys.anyJustPressed(["D", "RIGHT", "DPAD_RIGHT", "LEFT_STICK_DIGITAL_RIGHT", "RIGHT_STICK_DIGITAL_RIGHT"])){
 					charSelect += 1;
 					_selArrowR.animation.play("yellow");
 					FlxG.sound.play("assets/sounds/menuConfirm.mp3");
@@ -140,7 +140,7 @@ class TitleState extends FlxState
 				}
 			}
 			
-			if (FlxG.keys.anyJustPressed(["ENTER", "Z", "SPACE"]) && (selected == 0 || selected == 2)){
+			if (FlxG.keys.anyJustPressed(["ENTER", "Z", "SPACE", "START", "B"]) && (selected == 0 || selected == 2)){
 				menuOpen(menuItems[selected]);
 			}
 		#end

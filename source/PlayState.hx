@@ -36,7 +36,7 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void 
 	{
 		//DEBUG leave PlayState
-		if (FlxG.keys.anyJustPressed(["Q", "ESCAPE"])){
+		if (FlxG.keys.anyJustPressed(["Q", "ESCAPE", "A"])){
 			FlxG.switchState(new TitleState());
 		}
 		

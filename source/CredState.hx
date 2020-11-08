@@ -62,13 +62,11 @@ class CredState extends FlxState
 			//});
 		}
 		
-		if (FlxG.keys.anyJustPressed(["Z", "ENTER", "SPACE"])){
+		if (FlxG.keys.anyJustPressed(["Z", "ENTER", "SPACE", "B"])){
 			FlxG.sound.music.stop();
 			
 			FlxG.switchState(new TitleState());
 		}
-			
-		var gamepad = FlxG.gamepads.lastActive;
 			
 		super.update(elapsed);
 	}

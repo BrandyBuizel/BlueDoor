@@ -26,7 +26,6 @@ class TitleState extends FlxState
 	private var _grpMenuBar:FlxTypedGroup<FlxSprite>;
 	
 	private var menuItems:Array<String> = ["Play", "Select Character", "Credits", "Exit"];
-	
 	private var charItems:Array<String> = ["Ken", "Dylan", "Dustin"];
 
 	private var selected:Int = 0;
@@ -44,6 +43,8 @@ class TitleState extends FlxState
 		#if (!web)
 		TitleState.soundExt = '.ogg';
 		#end
+
+		trace("init title state");
 		
 		initText();
 		
@@ -110,41 +111,41 @@ class TitleState extends FlxState
 		
 		_grpMenu.members[selected].color = FlxColor.YELLOW;
 		
-		#if !arcade //Normal Controller Mapping
-			if (FlxG.keys.anyJustPressed(["W", "UP", "DPAD_UP", "LEFT_STICK_DIGITAL_UP", "RIGHT_STICK_DIGITAL_UP"])){
-				selected -= 1;
-
-				FlxG.sound.play("assets/sounds/menuUp.mp3");
-				FlxG.sound.play("assets/sounds/menuUp.ogg");
-			}
-			
-			if (FlxG.keys.anyJustPressed(["S", "DOWN", "DPAD_DOWN", "LEFT_STICK_DIGITAL_DOWN", "RIGHT_STICK_DIGITAL_DOWN"])){
-				selected += 1;
-				FlxG.sound.play("assets/sounds/menuDown.mp3");
-				FlxG.sound.play("assets/sounds/menuDown.ogg");
-			}
+		if (controls.UP){
+			selected -= 1;
+			FlxG.sound.play("assets/sounds/menuUp.mp3");
+			FlxG.sound.play("assets/sounds/menuUp.ogg");
+		}
 		
-			if (selected == 1){
-				if (FlxG.keys.anyJustPressed(["A", "LEFT", "DPAD_LEFT", "LEFT_STICK_DIGITAL_LEFT", "RIGHT_STICK_DIGITAL_LEFT"])){
-					charSelect -= 1;
-					_selArrowL.animation.play("yellow");
-					FlxG.sound.play("assets/sounds/menuConfirm.mp3");
-					FlxG.sound.play("assets/sounds/menuConfirm.ogg");
-				}
-				
-				if (FlxG.keys.anyJustPressed(["D", "RIGHT", "DPAD_RIGHT", "LEFT_STICK_DIGITAL_RIGHT", "RIGHT_STICK_DIGITAL_RIGHT"])){
-					charSelect += 1;
-					_selArrowR.animation.play("yellow");
-					FlxG.sound.play("assets/sounds/menuConfirm.mp3");
-					FlxG.sound.play("assets/sounds/menuConfirm.ogg");
-				}
+		if (controls.DOWN){
+			selected += 1;
+			FlxG.sound.play("assets/sounds/menuDown.mp3");
+			FlxG.sound.play("assets/sounds/menuDown.ogg");
+		}
+		
+		if (selected == 1){
+			if (controls.LEFT){
+				charSelect -= 1;
+				_selArrowL.animation.play("yellow");
+				FlxG.sound.play("assets/sounds/menuConfirm.mp3");
+				FlxG.sound.play("assets/sounds/menuConfirm.ogg");
 			}
 			
-			if (FlxG.keys.anyJustPressed(["ENTER", "Z", "SPACE", "START", "B"]) && (selected == 0 || selected == 2)){
+			if (controls.RIGHT){
+				charSelect += 1;
+				_selArrowR.animation.play("yellow");
+				FlxG.sound.play("assets/sounds/menuConfirm.mp3");
+				FlxG.sound.play("assets/sounds/menuConfirm.ogg");
+			}
+		}
+
+		if (selected == 0 || selected == 2){
+			if (controls.ACCEPT || controls.START)
+			{
 				menuOpen(menuItems[selected]);
 			}
-		#end
-
+		}
+	
 		FlxG.watch.addQuick("selected 1: ", selected);
 
 		if (selected > _grpMenu.members.length - 1)

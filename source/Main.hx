@@ -1,10 +1,9 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxGame;
-import openfl.display.FPS;
-import openfl.display.Sprite;
 
-class Main extends Sprite
+class Main extends openfl.display.Sprite
 {
 	public function new()
 	{

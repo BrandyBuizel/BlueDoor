@@ -1,10 +1,10 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.system.FlxBasePreloader;
-import flixel.FlxG;
-import flash.display.*;
 import flash.Lib;
+import flash.display.*;
 import openfl.display.Sprite;
 import openfl.display.BitmapData;
 

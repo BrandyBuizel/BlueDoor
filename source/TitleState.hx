@@ -1,5 +1,6 @@
 package;
 
+import Controls;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -17,9 +18,18 @@ import flixel.ui.FlxSpriteButton;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flixel.util.FlxSpriteUtil;
+import lime.utils.Assets;
 
 class TitleState extends FlxState
 {
+	//Controls.init();
+
+	#if (haxe >= "4.0.0")
+	public final controls:Controls;
+	#else
+	public var controls:Controls;
+	#end
+
 	static public var soundExt:String = ".mp3";
 	
 	private var _grpMenu:FlxTypedGroup<FlxText>;
@@ -40,11 +50,11 @@ class TitleState extends FlxState
 	
 	override public function create():Void 
 	{
+		trace("init title state");
+		
 		#if (!web)
 		TitleState.soundExt = '.ogg';
 		#end
-
-		trace("init title state");
 		
 		initText();
 		
@@ -140,7 +150,7 @@ class TitleState extends FlxState
 		}
 
 		if (selected == 0 || selected == 2){
-			if (controls.ACCEPT || controls.START)
+			if (controls.ACCEPT || controls.PAUSE)
 			{
 				menuOpen(menuItems[selected]);
 			}

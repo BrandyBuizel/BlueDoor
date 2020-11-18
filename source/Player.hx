@@ -1,6 +1,9 @@
 package;
 
+import Controls;
+import flixel.FlxCamera;
 import flixel.FlxG;
+import flixel.util.FlxSignal;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.math.FlxMath;

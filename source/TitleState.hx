@@ -1,6 +1,5 @@
 package;
 
-import Controls;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxState;
@@ -22,14 +21,6 @@ import lime.utils.Assets;
 
 class TitleState extends FlxState
 {
-	//Controls.init();
-
-	#if (haxe >= "4.0.0")
-	public final controls:Controls;
-	#else
-	public var controls:Controls;
-	#end
-
 	static public var soundExt:String = ".mp3";
 	
 	private var _grpMenu:FlxTypedGroup<FlxText>;
@@ -47,6 +38,12 @@ class TitleState extends FlxState
 	
 	private var _selArrowL:FlxSprite;
 	private var _selArrowR:FlxSprite;
+
+	private var _left:Array<flixel.input.keyboard.FlxKey> = ["LEFT", "A"];
+	private var _right:Array<flixel.input.keyboard.FlxKey> = ["RIGHT", "D"];
+	private var _up:Array<flixel.input.keyboard.FlxKey> = ["UP", "W"];
+	private var _down:Array<flixel.input.keyboard.FlxKey> = ["DOWN", "S"];
+	private var _accept:Array<flixel.input.keyboard.FlxKey> = ["SPACE", "ENTER"];
 	
 	override public function create():Void 
 	{
@@ -54,7 +51,7 @@ class TitleState extends FlxState
 		
 		#if (!web)
 		TitleState.soundExt = '.ogg';
-		#end
+		#end    
 		
 		initText();
 		
@@ -114,43 +111,42 @@ class TitleState extends FlxState
 
 	private function menuHandling():Void
 	{
-		
 		for (i in 0..._grpMenu.members.length){
 			_grpMenu.members[i].color = FlxColor.WHITE;
 		}
 		
 		_grpMenu.members[selected].color = FlxColor.YELLOW;
 		
-		if (controls.UP){
+		if (FlxG.keys.anyJustPressed(_up))
+		{
 			selected -= 1;
-			FlxG.sound.play("assets/sounds/menuUp.mp3");
-			FlxG.sound.play("assets/sounds/menuUp.ogg");
+			FlxG.sound.play("assets/sounds/menuUp" + soundExt);
 		}
 		
-		if (controls.DOWN){
+		if (FlxG.keys.anyJustPressed(_down))
+		{
 			selected += 1;
-			FlxG.sound.play("assets/sounds/menuDown.mp3");
-			FlxG.sound.play("assets/sounds/menuDown.ogg");
+			FlxG.sound.play("assets/sounds/menuDown" + soundExt);
 		}
 		
 		if (selected == 1){
-			if (controls.LEFT){
+			if (FlxG.keys.anyJustPressed(_left))
+			{
 				charSelect -= 1;
 				_selArrowL.animation.play("yellow");
-				FlxG.sound.play("assets/sounds/menuConfirm.mp3");
-				FlxG.sound.play("assets/sounds/menuConfirm.ogg");
+				FlxG.sound.play("assets/sounds/menuConfirm" + soundExt);
 			}
-			
-			if (controls.RIGHT){
+				
+			if (FlxG.keys.anyJustPressed(_right))
+			{
 				charSelect += 1;
 				_selArrowR.animation.play("yellow");
-				FlxG.sound.play("assets/sounds/menuConfirm.mp3");
-				FlxG.sound.play("assets/sounds/menuConfirm.ogg");
+				FlxG.sound.play("assets/sounds/menuConfirm" + soundExt);
 			}
 		}
 
 		if (selected == 0 || selected == 2){
-			if (controls.ACCEPT || controls.PAUSE)
+			if (FlxG.keys.anyJustPressed(_accept))
 			{
 				menuOpen(menuItems[selected]);
 			}
@@ -168,13 +164,6 @@ class TitleState extends FlxState
 
 	private function menuOpen(menuSelected:String):Void
 	{
-		var sound:FlxSound = new FlxSound();
-		sound.persist = true;
-		sound.loadEmbedded("assets/sounds/menuConfirm.mp3", false, true);
-		sound.loadEmbedded("assets/sounds/menuConfirm.ogg", false, true);
-		sound.group = FlxG.sound.defaultSoundGroup;
-		sound.play();
-
 		switch (menuSelected){
 			case "Play":
 				FlxG.switchState(new PlayState());

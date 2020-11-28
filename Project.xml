@@ -62,8 +62,9 @@
 	<!--In case you want to use the ui package-->
 	<haxelib name="flixel-ui" />
 	<haxelib name="djFlixel" />
-	<!-- <haxelib name="newgrounds" /> -->
-	<!-- <haxelib name="faxe" /> -->
+	<haxelib name="newgrounds" />
+	<haxelib name="faxe" if='!web'/>
+	
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
 
@@ -108,7 +109,10 @@
 	<!-- _________________________________ Custom _______________________________ -->
 
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
-
 	<icon path="art/icon.png" />
+
+
+	<!-- <haxedef name="SKIP_TO_PLAYSTATE" if="debug" /> -->
 	<haxedef name="NG_LOGIN" if="newgrounds" />
+	
 </project>

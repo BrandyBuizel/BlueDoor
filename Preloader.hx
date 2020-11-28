@@ -1,26 +1,24 @@
-package;
+package ;
 
-import flixel.FlxG;
-import flixel.FlxSprite;
-import flixel.system.FlxBasePreloader;
-import flash.Lib;
-import flash.display.*;
+import openfl.Lib;
 import openfl.display.Sprite;
+import openfl.events.Event;
+import openfl.display.Bitmap;
 import openfl.display.BitmapData;
-
+ 
 @:bitmap("art/preloaderArt.png") class LogoImage extends BitmapData { }
-
-class Preloader extends FlxBasePreloader 
+ 
+class Preloader extends flixel.system.FlxBasePreloader
 {
-	override public function new(MinDisplayTime:Float=4, ?AllowedURLs:Array<String>)
+    override public function new(MinDisplayTime:Float = 2, ?AllowedURLs:Array<String>) 
 	{
 		super(MinDisplayTime, AllowedURLs);
 	}
      
     var logo:Sprite;
 	
-	override private function create():Void
-	{		
+	override function create():Void
+	{	
 		this._width = Lib.current.stage.stageWidth;
         this._height = Lib.current.stage.stageHeight;
          
@@ -36,8 +34,8 @@ class Preloader extends FlxBasePreloader
         super.create();
 	}
 	
-	override public function update(Percent:Float):Void
+	override public function update(percent:Float):Void
 	{
-		super.update(Percent);
+		super.update(percent);
 	}
 }

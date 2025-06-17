@@ -2,8 +2,8 @@
   uses: sarisia/actions-status-discord@v1.15.3
   if: always()
   with:
-    webhook: ${{ secrets.DISCORD_WEBHOOK }}
     # Discord webhook endpoint. If not set, env.DISCORD_WEBHOOK will be used.
+    webhook: https://discord.com/api/webhooks/1384604069741596872/uBvc-Ryb5jPFsbACFlszH_8TvHtSwwYFDxrLWpbHxl_kAlH6kQ6JeJgFhooyKHcYxngJ
     nodetail: true
     # String included in embed title. Overrides job input.
     title: "Malcolm pushed some work to github!"
@@ -18,4 +18,4 @@
     # Overrides Discord webhook username
     username: ODDBOT
     # Overrides Discord webhook avatar url
-    avatar_url: #https://oddcore.wiki.gg/images/8/82/Client_logo.png
+    avatar_url: https://oddcore.wiki.gg/images/8/82/Client_logo.png

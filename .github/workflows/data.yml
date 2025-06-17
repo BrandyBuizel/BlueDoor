@@ -4,11 +4,8 @@
   with:
     # Discord webhook endpoint. If not set, env.DISCORD_WEBHOOK will be used.
     webhook: https://discord.com/api/webhooks/1384604069741596872/uBvc-Ryb5jPFsbACFlszH_8TvHtSwwYFDxrLWpbHxl_kAlH6kQ6JeJgFhooyKHcYxngJ
-    nodetail: true
     # String included in embed title. Overrides job input.
     title: "Malcolm pushed some work to github!"
-    description: |
-      Version `${{ github.event.release.tag_name }}`
     # Image attached to the message
     image: ${{ secrets.EMBED_IMAGE }}
     # Overrides Discord embed color
@@ -19,3 +16,4 @@
     username: ODDBOT
     # Overrides Discord webhook avatar url
     avatar_url: https://oddcore.wiki.gg/images/8/82/Client_logo.png
+    nodetail: true
